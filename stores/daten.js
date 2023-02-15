@@ -1,0 +1,117 @@
+import { defineStore, storeToRefs } from "pinia";
+
+export const useDaten = defineStore("daten", {
+  id: "daten",
+  state: () => ({
+    // Schritt 1
+    navDaten1: [
+      { title: "Hauptseite", icon: "mdi-home-city", to: "/" },
+      { title: "Termine", icon: "mdi-calendar-clock-outline", to: "/" },
+      { title: "Info", icon: "mdi-information-variant", to: "/" },
+    ],
+    navDaten2T: [
+      { title: "Intern", to: "/termine" },
+      { title: "Ort", to: "/termine" },
+      { title: "Tourist", to: "/termine" },
+    ],
+    navDaten2I: [
+      { title: "Impressum", to: "/impressum" },
+      { title: "Datenschutz", to: "/datenschutz" },
+     
+    ],
+    NavColor1: [
+      "black",
+      "white",
+      "transparent",
+      "red",
+      "pink",
+      "purple",
+      "deep-purple",
+      "indigo",
+      "blue",
+      "light-blue",
+      "cyan",
+      "teal",
+      "green",
+      "light-green",
+      "lime",
+      "yellow",
+      "amber",
+      "orange",
+      "deep-orange",
+      "brown",
+      "blue-grey",
+      "grey",
+    ],
+    NavColor2: [
+      "",
+      "-lighten-5",
+      "-lighten-4",
+      "-lighten-3",
+      "-lighten-2",
+      "-lighten-1",
+      "-darken-1",
+      "-darken-2",
+      "-darken-3",
+      "-darken-4",
+      "-accent-1",
+      "-accent-2",
+      "-accent-3",
+      "-accent-4",
+    ],
+    NavColor3: [
+      "text-black",
+      "text-white",
+      "text-red",
+      "text-pink",
+      "text-purple",
+      "text-deep-purple",
+      "text-indigo",
+      "text-blue",
+      "text-light-blue",
+      "text-cyan",
+      "text-teal",
+      "text-green",
+      "text-light-green",
+      "text-lime",
+      "text-yellow",
+      "text-amber",
+      "text-orange",
+      "text-deep-orange",
+      "text-brown",
+      "text-blue-grey",
+      "text-grey",
+    ],
+    NavColor4: [
+      "",
+      "text--lighten-5",
+      "text--lighten-4",
+      "text--lighten-3",
+      "text--lighten-2",
+      "text--lighten-1",
+      "text--darken-1",
+      "text--darken-2",
+      "text--darken-3",
+      "text--darken-4",
+      "text--accent-1",
+      "text--accent-2",
+      "text--accent-3",
+      "text--accent-4",
+    ],
+    farbBereiche: [
+      "Leiste Oben",
+      "Leiste Links",
+      "Leiste Unten",
+      "Hintergrund",
+    ],
+    // Schritt 3
+  }),
+  actions: {
+    // Schritt 1
+    // Schritt 3
+  },
+  getters: {
+    // Schritt 1
+    // Schritt 3
+  },
+});

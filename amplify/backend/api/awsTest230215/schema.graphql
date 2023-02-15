@@ -1,0 +1,13 @@
+type TabA230215 @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  navSpalte1: [AWSJSON]
+  navSpalte2: [AWSJSON]
+  thema: String
+  farbeOben: [String]
+  farbeLinks: [String]
+  farbeUnten: [String]
+  farbeHintergrund: [String]
+  reihenfolge: Int
+  onlineSeite: Int
+}
+ 

@@ -1,0 +1,14 @@
+{
+  "resourceName": "s3awstest230215storage688ea7a7",
+  "bucketName": "awstest230215-storage-688ea7a7",
+  "policyUUID": "d74b14c3",
+  "storageAccess": "authAndGuest",
+  "guestAccess": [
+    "READ"
+  ],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ]
+}
