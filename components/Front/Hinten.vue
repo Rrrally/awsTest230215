@@ -27,8 +27,9 @@
       }"
       :width="abc.Wbreite(100)"
       :height="abc.Whöhe(100)"
-      src="https://awstest230207-storage-c55056ce110531-staging.s3.eu-central-1.amazonaws.com/IMG_5099.jpeg"
+      src="https://awstest230215-storage-688ea7a7141118-staging.s3.eu-central-1.amazonaws.com/public/IMG_5099.jpeg"
     ></v-img>
+
   </v-card>
 </template>
 

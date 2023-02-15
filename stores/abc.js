@@ -4,6 +4,7 @@ import { useWindowSize } from "@vueuse/core";
 import { TabA230215 } from "@/src/models";
 import { useDaten } from "@/stores/daten";
 import { v4 as uuidv4 } from "uuid";
+import { Storage } from "@aws-amplify/storage";
 
 const daten = useDaten();
 
@@ -400,6 +401,16 @@ export const useabc = defineStore("abc", {
     },
     onScroll(e) {
       this.offsetTop = e.target.scrollTop;
+    },
+    speichernBild(x) {
+      console.log("Test Speichern");
+      const testY = new Promise(async (resolve, reject) => {
+        try {
+          const testX = await Storage.put(x[0].name, x[0]);
+        } catch (err) {
+          console.log("Fehler");
+        }
+      });
     },
   },
   getters: {
