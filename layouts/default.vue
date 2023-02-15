@@ -36,8 +36,6 @@ onMounted(() => {
   //   abc.radioX0 = parseInt(a);
   //   abc.aktDatensatz = parseInt(a);
   // }
-
- 
 });
 watch(
   () => abc.counter,
@@ -45,11 +43,32 @@ watch(
     if (abc.tabAs.length === 0) {
     } else {
       abc.datenGeladen = true;
-    }
+    };
     abc.flächeErrechnen();
     if (abc.counter > 8) {
       abc.counter = 0;
     }
+  }
+);
+watch(
+  () => abc.datenGeladen,
+  (m, y) => {
+ 
+      const x = abc.aktDatensatz;
+     
+  abc.aktDatensatz = x;
+    abc.navSpalteX1 = JSON.parse(abc.tabAs[x].navSpalte1);
+    abc.navSpalteX2 = JSON.parse(abc.tabAs[x].navSpalte2);
+    abc.farbeOben = abc.tabAs[x].farbeOben[0];
+    abc.farbeLinks = abc.tabAs[x].farbeLinks[0];
+    abc.farbeUnten = abc.tabAs[x].farbeUnten[0];
+    abc.farbeHintergrund = abc.tabAs[x].farbeHintergrund[0];
+    abc.farbeObenT = [parseInt(abc.tabAs[x].farbeOben[1]), abc.tabAs[x].farbeOben[2]];
+    abc.farbeLinksT = [parseInt(abc.tabAs[x].farbeLinks[1]), abc.tabAs[x].farbeLinks[2]];
+    abc.farbeUntenT = [parseInt(abc.tabAs[x].farbeUnten[1]), abc.tabAs[x].farbeUnten[2]];
+    abc.farbeHintergrundT = [parseInt(abc.tabAs[x].farbeHintergrund[1]), abc.tabAs[x].farbeHintergrund[2]];
+    
+  
   }
 );
 watch(

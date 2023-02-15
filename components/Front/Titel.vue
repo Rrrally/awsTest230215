@@ -11,12 +11,12 @@
       <!-- Feld über Bild Ende-->
       <!-- Schriftzug Anfang-->
       <v-card
-        class="pl-12 text-center"
+        class="pl-12 d-flex text-center"
         color="transparent"
         :width="abc.Wbreite(80)"
         :height="abc.Whöhe(35)"
       >
-        <v-card-text class="text-h4 text-md-h3 text-lg-h2 text-white">{{ abc.kundendaten.organisation }}</v-card-text>
+        <v-card-title class="text-h4 text-md-h3 text-lg-h2 text-white">{{ abc.kundendaten.organisation }}</v-card-title>
         <v-card-text class="text-h5 text-white">von 1912 e.V.</v-card-text>
       </v-card>
 </template>
