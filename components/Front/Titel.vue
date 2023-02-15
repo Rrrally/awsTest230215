@@ -16,8 +16,8 @@
         :width="abc.Wbreite(80)"
         :height="abc.Whöhe(35)"
       >
-        <v-card-text class="text-h3 text-white">{{ abc.kundendaten.organisation }}</v-card-text>
-        <v-card-text class="text-h4 text-white">von 1912 e.V.</v-card-text>
+        <v-card-text class="text-h4 text-md-h3 text-lg-h2 text-white">{{ abc.kundendaten.organisation }}</v-card-text>
+        <v-card-text class="text-h5 text-white">von 1912 e.V.</v-card-text>
       </v-card>
 </template>
 

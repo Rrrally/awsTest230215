@@ -58,6 +58,8 @@ export const useabc = defineStore("abc", {
     ping: "Start",
     isIntersecting: false,
     offsetTop: 0,
+    center: [1014774.9306317891, 6891750.848911292],
+    zoom: 12,
   
   }),
   actions: {
@@ -412,6 +414,18 @@ export const useabc = defineStore("abc", {
         }
       });
     },
+    centerChanged(update1) {
+      this.center = update1;
+    },
+    zoomChanged(update2) {
+      this.zoom = update2;
+    },
+    zoomPlus() {
+      this.zoom = this.zoom + 1;
+    },
+    zoomMinus() {
+      this.zoom = this.zoom - 1;
+    }
   },
   getters: {
     Wbreite: (state) => (prozent) => {

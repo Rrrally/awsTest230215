@@ -24,6 +24,7 @@
       <NavFarben v-if="abc.tabBereich === 1"></NavFarben>
       <NavLeiste v-if="abc.tabBereich === 2"></NavLeiste>
       <NavBilder v-if="abc.tabBereich === 3"></NavBilder>
+      <LandkartenLandkarte1 v-if="abc.tabBereich === 4"></LandkartenLandkarte1>
 
       <v-row
       v-scroll:#scroll-target="onScroll"
@@ -58,6 +59,9 @@
             </v-chip>
             <v-chip  v-if="abc.userId != ''">
               {{ tags[3] }}
+            </v-chip>
+            <v-chip  v-if="abc.userId != ''">
+              {{ tags[4] }}
             </v-chip>
           </v-chip-group>
         </div>
@@ -103,7 +107,8 @@ export default {
         'Login',
         'Layout',
         'Nav-Leiste',
-        'Bilder'
+        'Bilder',
+        'Landkarte'
 
       ],
       offsetTop: 0,
