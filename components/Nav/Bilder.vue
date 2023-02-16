@@ -1,9 +1,9 @@
 <template>
        <v-row>
-  <v-card class="pa-0" color="orange" :width="abc.Wbreite(70)" :height="abc.Whöhe(100) + 1000">
+  <v-card class="pa-0" color="orange" :width="abc.Wbreite(44)" :height="abc.Whöhe(100) + 1000">
   <NavBilder1></NavBilder1>
   </v-card>
-  <v-card class="pa-5" color="green" :width="abc.Wbreite(24)" :height="abc.Whöhe(80)">
+  <v-card class="pa-5" color="green" :width="abc.Wbreite(50)" :height="abc.Whöhe(80)">
    <NavBilder2></NavBilder2>
   </v-card>
 </v-row>
@@ -28,6 +28,12 @@ const daten = useDaten();
 
 //   }
 // );
+watch(
+  () => abc.tabBereich,
+  (x, y) => {
+    
+  }
+);
 </script>
 
 <script>

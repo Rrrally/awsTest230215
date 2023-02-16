@@ -1,22 +1,12 @@
 <template>
-  
     <span v-for="item in abc.verzeichnisBilder.results" :key="item.id">
-     
-      <!-- <v-card
-          v-if="item.key != null"
-          class="imagePreviewWrapper"
-          :style="{ 'background-image': `url(${item.key})` }"
-          @click="selectImage"
-        >
-        </v-card> -->
-        <v-card
-          v-if="item.key != null"
+ 
+        <v-card v-if="item.key != null"
           class="imagePreviewWrapper"
           :style="{ 'background-image': `url(https://awstest230215-storage-688ea7a7141118-staging.s3.eu-central-1.amazonaws.com/public/${item.key}` }"
-        
         >
-        </v-card>
 
+        </v-card>
       <v-chip
     
       class="ma-2"
@@ -27,6 +17,7 @@
     </v-chip>
 
     </span>
+    <!-- {{ abc.verzeichnisBilder.results[0].key }} -->
    
     <!-- results = key, eTag, lastModified, size  -->
 
@@ -44,7 +35,7 @@ const abc = useabc();
 const daten = useDaten();
 
 onMounted(() => {
-  abc.verzeichnisBilder();
+  abc.verzeichnisBilderX();
 });
 // watch(
 //   () => abc.variable,
@@ -52,6 +43,12 @@ onMounted(() => {
 
 //   }
 // );
+watch(
+  () => abc.tabBereich,
+  (x, y) => {
+    abc.verzeichnisBilderX();
+  }
+);
 </script>
 
 <script>

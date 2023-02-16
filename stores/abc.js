@@ -412,13 +412,13 @@ export const useabc = defineStore("abc", {
       const testY = new Promise(async (resolve, reject) => {
         try {
           const testX = await Storage.put(x[0].name, x[0]);
-          this.verzeichnisBilder();
+          this.verzeichnisBilderX();
         } catch (err) {
-          console.log("Fehler");
+          console.log("Fehler speichernBild");
         }
       });
     },
-    verzeichnisBilder(x) {
+    verzeichnisBilderX(x) {
       console.log("Test listenBild");
           Storage.list('')
                   .then(result => this.verzeichnisBilder = result,  
