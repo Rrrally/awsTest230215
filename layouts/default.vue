@@ -52,21 +52,22 @@ watch(
 );
 watch(
   () => abc.datenGeladen,
-  (m, y) => {
+  (m, n) => {
  
       const x = abc.aktDatensatz;
+      const y = abc.tabAs[x];
      
-  abc.aktDatensatz = x;
-    abc.navSpalteX1 = JSON.parse(abc.tabAs[x].navSpalte1);
-    abc.navSpalteX2 = JSON.parse(abc.tabAs[x].navSpalte2);
-    abc.farbeOben = abc.tabAs[x].farbeOben[0];
-    abc.farbeLinks = abc.tabAs[x].farbeLinks[0];
-    abc.farbeUnten = abc.tabAs[x].farbeUnten[0];
-    abc.farbeHintergrund = abc.tabAs[x].farbeHintergrund[0];
-    abc.farbeObenT = [parseInt(abc.tabAs[x].farbeOben[1]), abc.tabAs[x].farbeOben[2]];
-    abc.farbeLinksT = [parseInt(abc.tabAs[x].farbeLinks[1]), abc.tabAs[x].farbeLinks[2]];
-    abc.farbeUntenT = [parseInt(abc.tabAs[x].farbeUnten[1]), abc.tabAs[x].farbeUnten[2]];
-    abc.farbeHintergrundT = [parseInt(abc.tabAs[x].farbeHintergrund[1]), abc.tabAs[x].farbeHintergrund[2]];
+  // abc.aktDatensatz = x;
+    abc.navSpalteX1 = JSON.parse(y.navSpalte1);
+    abc.navSpalteX2 = JSON.parse(y.navSpalte2);
+    abc.farbeOben = y.farbeOben[0];
+    abc.farbeLinks = y.farbeLinks[0];
+    abc.farbeUnten = y.farbeUnten[0];
+    abc.farbeHintergrund = y.farbeHintergrund[0];
+    abc.farbeObenT = [parseInt(y.farbeOben[1]), y.farbeOben[2]];
+    abc.farbeLinksT = [parseInt(y.farbeLinks[1]), y.farbeLinks[2]];
+    abc.farbeUntenT = [parseInt(y.farbeUnten[1]), y.farbeUnten[2]];
+    abc.farbeHintergrundT = [parseInt(y.farbeHintergrund[1]), y.farbeHintergrund[2]];
     
   
   }

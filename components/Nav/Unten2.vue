@@ -3,7 +3,7 @@
 
 
     <v-snackbar
-   
+   color="transparent"
       v-model="abc.snackbar"
       vertical
       :width="abc.Wbreite(100)"
@@ -11,12 +11,21 @@
       timeout="-1"
     >
   
-    <v-container
+    <!-- <v-container
     id="scroll-target"
     :style="{
       height: abc.Whöhe(60) + 'px',
       width: abc.Wbreite(100) - 50 + 'px',
       maxWidth: maxWeite + 'px',
+    }"
+    class="overflow-y-auto bg-red pa-0 ma-0"
+  > -->
+  <v-container
+    id="scroll-target"
+    :style="{
+      height: abc.Whöhe(60) + 'px',
+      width: abc.Wbreite(100) - 50 + 'px',
+     
     }"
     class="overflow-y-auto bg-red pa-0 ma-0"
   >
@@ -40,8 +49,8 @@
 
       <template v-slot:actions>
 
-
-        <div class="pa-0">
+        <v-card color="black" >
+  <div class="pa-0">
           <v-chip-group
             selected-class="text-yellow"
             column
@@ -74,6 +83,8 @@
         >
           Close
         </v-btn>
+</v-card>
+    
       </template>
     </v-snackbar>
   </div>

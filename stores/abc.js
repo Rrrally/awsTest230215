@@ -60,6 +60,9 @@ export const useabc = defineStore("abc", {
     offsetTop: 0,
     center: [1014774.9306317891, 6891750.848911292],
     zoom: 12,
+    previewImage: null,
+    foto: {},
+    verzeichnisBilder: []
   
   }),
   actions: {
@@ -409,10 +412,27 @@ export const useabc = defineStore("abc", {
       const testY = new Promise(async (resolve, reject) => {
         try {
           const testX = await Storage.put(x[0].name, x[0]);
+          this.verzeichnisBilder();
         } catch (err) {
           console.log("Fehler");
         }
       });
+    },
+    verzeichnisBilder(x) {
+      console.log("Test listenBild");
+          Storage.list('')
+                  .then(result => this.verzeichnisBilder = result,  
+                  )
+                  .catch(err => console.log(err));
+    },
+    deleteBild(x) {
+      const testY = new Promise(async (resolve, reject) => {
+        try {
+      await Storage.remove(x);
+    } catch (err) {
+      console.log("Fehler");
+    }
+  });
     },
     centerChanged(update1) {
       this.center = update1;
@@ -425,7 +445,8 @@ export const useabc = defineStore("abc", {
     },
     zoomMinus() {
       this.zoom = this.zoom - 1;
-    }
+    },
+
   },
   getters: {
     Wbreite: (state) => (prozent) => {
