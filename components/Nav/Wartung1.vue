@@ -6,7 +6,7 @@
       <v-btn
         v-if="abc.tabAs.length <= i + 1"
         color="red"
-        @click="abc.datensatzLöschen(item.id)"
+        @click="abc.datensatzALöschen(item.id)"
         >{{ item.thema }}</v-btn
       >
       <v-btn v-else disabled>{{ item.thema }}</v-btn>

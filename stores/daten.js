@@ -104,6 +104,33 @@ export const useDaten = defineStore("daten", {
       "Leiste Unten",
       "Hintergrund",
     ],
+    feiertage: [
+      {id: 1, name: "Neujahr", art: "fest", datum: "01-01.", varianz: 0},
+      {id: 2, name: "Heilige Drei Könige", art: "fest", datum: "01-06", varianz: 0},
+      {id: 3, name: "Aschermittwoch", art: "varianz", datum: "03-02", varianz: -46},
+      {id: 4, name: "Internationaler Frauentag", art: "fest", datum: "03.08", varianz: 0},
+      {id: 5, name: "Karfreitag", art: "fest", datum: "04-15", varianz: 0},
+      {id: 6, name: "Ostersonntag", art: "varianz", datum: "04-17", varianz: 0},
+      {id: 7, name: "Ostermontag", art: "varianz", datum: "04-18", varianz: 1},
+      {id: 8, name: "Tag der Arbeit", art: "fest", datum: "05-01", varianz: 0},
+      {id: 9, name: "Christi Himmelfahrt", art: "varianz", datum: "05-26", varianz: 39},
+      {id: 10, name: "Pfingstsonntag", art: "varianz", datum: "06-05", varianz: 49},
+      {id: 11, name: "Pfingstmontag", art: "varianz", datum: "06-06", varianz: 50},
+      {id: 12, name: "Fronleichnam", art: "varianz", datum: "06-16", varianz: 60},
+      {id: 13, name: "Augsburger Friedensfest", art: "fest", datum: "08-08", varianz: 0},
+      {id: 14, name: "Mariä Himmelfahrt", art: "fest", datum: "08-15", varianz: 0},
+      {id: 15, name: "Weltkindertag", art: "fest", datum: "09-20", varianz: 0},
+      {id: 16, name: "Tag der deutschen Einheit", art: "fest", datum: "10-03", varianz: 0},
+      {id: 17, name: "Reformationstag", art: "fest", datum: "10-31", varianz: 0},
+      {id: 18, name: "Allerheiligen", art: "fest", datum: "11-01", varianz: 0},
+      {id: 19, name: "Buß- und Bettag", art: "fest", datum: "11-16", varianz: 0},
+      {id: 20, name: "Heiligabend", art: "fest", datum: "12-24", varianz: 0},
+      {id: 21, name: "1. Weihnachtsfeiertag", art: "fest", datum: "12-25", varianz: 0},
+      {id: 22, name: "2. Weihnachtsfeiertag", art: "fest", datum: "12-26", varianz: 0},
+      {id: 23, name: "Sylvester", art: "fest", datum: "12-31", varianz: 0},
+  
+    ],
+  
     // Schritt 3
   }),
   actions: {

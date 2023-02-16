@@ -4,8 +4,9 @@ import { schema } from './schema';
 
 
 
-const { TabA230215 } = initSchema(schema);
+const { TabB230215, TabA230215 } = initSchema(schema);
 
 export {
+  TabB230215,
   TabA230215
 };

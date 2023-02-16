@@ -12,6 +12,8 @@
         >
           {{ item.id }}
         </div>
+
+ <FrontFormTermin></FrontFormTermin>
         <v-card
           class="mx-auto"
           v-intersect="abc.onIntersect"
@@ -55,6 +57,7 @@
 import { useabc } from "@/stores/abc";
 import { useDaten } from "@/stores/daten";
 
+
 const abc = useabc();
 const daten = useDaten();
 
@@ -89,4 +92,8 @@ export default {
   visibility: hidden;
   height: 50px;
 }
+
+
+
+
 </style>

@@ -27,6 +27,7 @@ abc.counter = useInterval(3000);
 onMounted(() => {
   abc.flächeErrechnen();
   abc.datensatzALesen();
+  abc.datensatzBLesen();
   // const a = localStorage.getItem("aktDatensatz");
   // console.log(parseInt(a));
   // if (a === null) {

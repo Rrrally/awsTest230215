@@ -1,3 +1,14 @@
+type TabB230215 @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  veranstaltung: String
+  mandant: String
+  startArt: String
+  datumAnfang: String
+  datumEnde: String
+  ort: String
+  fotoName: String
+}
+
 type TabA230215 @model @auth(rules: [{allow: public}]) {
   id: ID!
   navSpalte1: [AWSJSON]

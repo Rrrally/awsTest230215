@@ -2,9 +2,11 @@ import { defineStore, storeToRefs } from "pinia";
 import { DataStore } from "@aws-amplify/datastore";
 import { useWindowSize } from "@vueuse/core";
 import { TabA230215 } from "@/src/models";
+import { TabB230215 } from "@/src/models";
 import { useDaten } from "@/stores/daten";
 import { v4 as uuidv4 } from "uuid";
 import { Storage } from "@aws-amplify/storage";
+import moment from "moment";
 
 const daten = useDaten();
 
@@ -21,6 +23,7 @@ export const useabc = defineStore("abc", {
       ortsteil: "Musterdorf",
     },
     tabAs: [],
+    tabBs: [],
     width: 0,
     height: 0,
     counter: 0,
@@ -31,12 +34,22 @@ export const useabc = defineStore("abc", {
     radioX1: 0,
     radioX3: null,
     userId: "",
-    tabBereich: 0, 
+    tabBereich: 0,
     form2: {
       id: "",
       textKurz: "",
       reihenfolge: "",
       zuFormID: "",
+    },
+    form3: {
+      id: "",
+      veranstaltung: "",
+      mandant: "",
+      startArt: "",
+      datumAnfang: "",
+      datumEnde: "",
+      ort: "",
+      fotoName: "",
     },
     navSpalteX1: [],
     navSpalteX2: [],
@@ -62,8 +75,8 @@ export const useabc = defineStore("abc", {
     zoom: 12,
     previewImage: null,
     foto: {},
-    verzeichnisBilder: []
-  
+    verzeichnisBilder: [],
+    datumJetzt: moment().locale("de").format("LLLL"),
   }),
   actions: {
     flächeErrechnen() {
@@ -84,7 +97,6 @@ export const useabc = defineStore("abc", {
             this.tabAs = models;
             this.aktDatensatz = this.tabAs[0].onlineSeite;
             this.radioX0 = this.aktDatensatz;
-            
 
             let compare = 0;
             if (this.tabAs.length > 0) {
@@ -99,7 +111,34 @@ export const useabc = defineStore("abc", {
             }
           }
         } catch (err) {
-          console.log("Fehler Datensatz lesen");
+          console.log("Fehler DatensatzA lesen");
+        }
+      });
+    },
+    datensatzBLesen() {
+      new Promise(async () => {
+        try {
+          const models = await DataStore.query(TabB230215);
+         
+            this.tabBs = [];
+            this.tabBs = models;
+          
+           
+
+            let compare = 0;
+            if (this.tabBs.length > 0) {
+              this.tabBs.sort((a, b) => {
+                if (a.reihenfolge > b.reihenfolge) {
+                  compare = 1;
+                } else if (b.reihenfolge > a.reihenfolge) {
+                  compare = -1;
+                }
+                return compare;
+              });
+            
+          }
+        } catch (err) {
+          console.log("Fehler DatensatzB lesen");
         }
       });
     },
@@ -123,7 +162,7 @@ export const useabc = defineStore("abc", {
         console.log("Fehler in Datenplus");
       }
       const str = JSON.stringify([]);
-      this.datensatzErstellen({
+      this.datensatzAErstellen({
         navSpalte1: str,
         navSpalte2: str,
         thema: thema,
@@ -135,7 +174,7 @@ export const useabc = defineStore("abc", {
         onlineSeite: 0,
       });
     },
-    datensatzErstellen(x) {
+    datensatzAErstellen(x) {
       new Promise(async () => {
         try {
           console.log("Create");
@@ -155,11 +194,35 @@ export const useabc = defineStore("abc", {
           );
           this.datensatzALesen();
         } catch (err) {
-          console.log("Fehler Create");
+          console.log("Fehler CreateA");
         }
       });
     },
-    datensatzLöschen(x) {
+    datensatzBErstellen(x) {
+      new Promise(async () => {
+        try {
+          console.log("Create");
+
+          const testY = await DataStore.save(
+            new TabB230215({
+         
+              veranstaltung: x.veranstaltung,
+              mandant: x.mandant,
+              startArt: x.startArt,
+              datumAnfang: x.datumAnfang,
+              datumEnde: x.datumEnde,
+              ort: x.ort,
+              fotoName: x.fotoName
+
+            })
+          );
+          this.datensatzBLesen();
+        } catch (err) {
+          console.log("Fehler CreateB");
+        }
+      });
+    },
+    datensatzALöschen(x) {
       new Promise(async () => {
         try {
           console.log("Delete");
@@ -167,7 +230,19 @@ export const useabc = defineStore("abc", {
           DataStore.delete(modelToDelete);
           this.datensatzALesen();
         } catch (err) {
-          console.log("Fehler Delete");
+          console.log("Fehler DeleteA");
+        }
+      });
+    },
+    datensatzBLöschen(x) {
+      new Promise(async () => {
+        try {
+          console.log("Delete");
+          const modelToDelete = await DataStore.query(TabB230215, x);
+          DataStore.delete(modelToDelete);
+          this.datensatzBLesen();
+        } catch (err) {
+          console.log("Fehler DeleteB");
         }
       });
     },
@@ -182,7 +257,6 @@ export const useabc = defineStore("abc", {
               updated.onlineSeite = x;
             })
           );
-      
         } catch (err) {
           console.log("Fehler Online setzen1");
         }
@@ -197,7 +271,6 @@ export const useabc = defineStore("abc", {
               updated.onlineSeite = x;
             })
           );
-         
         } catch (err) {
           console.log("Fehler Online setzen2");
         }
@@ -212,7 +285,6 @@ export const useabc = defineStore("abc", {
               updated.onlineSeite = x;
             })
           );
-         
         } catch (err) {
           console.log("Fehler OnlineSetzen3");
         }
@@ -220,109 +292,86 @@ export const useabc = defineStore("abc", {
       });
     },
 
-
-
     farbeSpeichern() {
       new Promise(async () => {
         try {
-          const original = await DataStore.query(TabA230215, this.tabAs[this.radioX0].id);
+          const original = await DataStore.query(
+            TabA230215,
+            this.tabAs[this.radioX0].id
+          );
 
           await DataStore.save(
             TabA230215.copyOf(original, (updated) => {
               // updated.onlineSeite = x;
-              updated.farbeOben = [this.farbeOben, String(this.farbeObenT[0]), this.farbeObenT[1]];
-              updated.farbeLinks = [this.farbeLinks, String(this.farbeLinksT[0]), this.farbeLinksT[1]];
-              updated.farbeUnten = [this.farbeUnten, String(this.farbeUntenT[0]), this.farbeUntenT[1]];
-              updated.farbeHintergrund = [this.farbeHintergrund, String(this.farbeHintergrundT[0]), this.farbeHintergrundT[1] ];
+              updated.farbeOben = [
+                this.farbeOben,
+                String(this.farbeObenT[0]),
+                this.farbeObenT[1],
+              ];
+              updated.farbeLinks = [
+                this.farbeLinks,
+                String(this.farbeLinksT[0]),
+                this.farbeLinksT[1],
+              ];
+              updated.farbeUnten = [
+                this.farbeUnten,
+                String(this.farbeUntenT[0]),
+                this.farbeUntenT[1],
+              ];
+              updated.farbeHintergrund = [
+                this.farbeHintergrund,
+                String(this.farbeHintergrundT[0]),
+                this.farbeHintergrundT[1],
+              ];
             })
           );
-      
         } catch (err) {
           console.log("Fehler Farbe speichern");
         }
       });
-
- 
     },
-
 
     datensatzTextErstellen(x) {
-   // x = form2
-  //  debugger;
+      // x = form2
+      //  debugger;
 
-   if (this.radioX3 === null) {
-    this.form2.zuFormID = "";
-  } else {
-    this.form2.zuFormID = this.radioX3.id;
-  }
+      if (this.radioX3 === null) {
+        this.form2.zuFormID = "";
+      } else {
+        this.form2.zuFormID = this.radioX3.id;
+      }
 
-   let a1 = {
-    id: uuidv4(),
-    textKurz: this.form2.textKurz,
-    reihenfolge: this.form2.reihenfolge,
-    zuFormID: this.form2.zuFormID,
-  };
-  
-   if (a1.zuFormID === "") {
-    const b1 = this.navSpalteX1.push(a1);
-   } else {
-    const b1 = this.navSpalteX2.push(a1);
-   };
+      let a1 = {
+        id: uuidv4(),
+        textKurz: this.form2.textKurz,
+        reihenfolge: this.form2.reihenfolge,
+        zuFormID: this.form2.zuFormID,
+      };
 
-   this.navSpalteX1.sort((a, b) => {
-    let compare = 0;
-    if (a.reihenfolge > b.reihenfolge) {
-      compare = 1;
-    } else if (b.reihenfolge > a.reihenfolge) {
-      compare = -1;
-    }
-    return compare;
-  });
-  this.navSpalteX2.sort((a, b) => {
-    let compare = 0;
-    if (a.reihenfolge > b.reihenfolge) {
-      compare = 1;
-    } else if (b.reihenfolge > a.reihenfolge) {
-      compare = -1;
-    }
-    return compare;
-  });
+      if (a1.zuFormID === "") {
+        const b1 = this.navSpalteX1.push(a1);
+      } else {
+        const b1 = this.navSpalteX2.push(a1);
+      }
 
-  this.zwischenspeicher1 = JSON.stringify(this.navSpalteX1);
-  this.zwischenspeicher2 = JSON.stringify(this.navSpalteX2);
-
-
-  new Promise(async () => {
-    try {
-      const original = await DataStore.query(
-        TabA230215,
-        this.tabAs[this.radioX0].id
-      );
-
-      await DataStore.save(
-        TabA230215.copyOf(original, (updated) => {
-          updated.navSpalte1 = this.zwischenspeicher1;
-          updated.navSpalte2 = this.zwischenspeicher2;
-        })
-      );
-
-      this.datensatzLesen();
-      this.zwischenspeicher1 = [];
-      this.zwischenspeicher2 = [];
-    } catch (err) {
-      console.log("Fehler Text erstellen");
-    }
-  });
-
-
-
-
-
-    },
-    datensatzTextLöschen(x, y) {
-      // x = 1 für Spalte 1
-
-      this.löschen('1', y);
+      this.navSpalteX1.sort((a, b) => {
+        let compare = 0;
+        if (a.reihenfolge > b.reihenfolge) {
+          compare = 1;
+        } else if (b.reihenfolge > a.reihenfolge) {
+          compare = -1;
+        }
+        return compare;
+      });
+      this.navSpalteX2.sort((a, b) => {
+        let compare = 0;
+        if (a.reihenfolge > b.reihenfolge) {
+          compare = 1;
+        } else if (b.reihenfolge > a.reihenfolge) {
+          compare = -1;
+        }
+        return compare;
+      });
 
       this.zwischenspeicher1 = JSON.stringify(this.navSpalteX1);
       this.zwischenspeicher2 = JSON.stringify(this.navSpalteX2);
@@ -341,13 +390,41 @@ export const useabc = defineStore("abc", {
             })
           );
 
-          this.datensatzLesen();
+          this.datensatzALesen();
+          this.zwischenspeicher1 = [];
+          this.zwischenspeicher2 = [];
+        } catch (err) {
+          console.log("Fehler Text erstellen");
+        }
+      });
+    },
+    datensatzTextLöschen(x, y) {
+      // x = 1 für Spalte 1
+
+      this.löschen("1", y);
+
+      this.zwischenspeicher1 = JSON.stringify(this.navSpalteX1);
+      this.zwischenspeicher2 = JSON.stringify(this.navSpalteX2);
+
+      new Promise(async () => {
+        try {
+          const original = await DataStore.query(
+            TabA230215,
+            this.tabAs[this.radioX0].id
+          );
+
+          await DataStore.save(
+            TabA230215.copyOf(original, (updated) => {
+              updated.navSpalte1 = this.zwischenspeicher1;
+              updated.navSpalte2 = this.zwischenspeicher2;
+            })
+          );
+
+          this.datensatzALesen();
         } catch (err) {
           console.log("Fehler Text löschen");
         }
       });
-
-
     },
 
     abrufUser(x) {
@@ -365,11 +442,9 @@ export const useabc = defineStore("abc", {
     },
     löschen(x, y) {
       if (x === "1") {
-
         for (let i = 0; i < this.navSpalteX1.length; i++) {
           if (y === this.navSpalteX1[i].id) {
             this.navSpalteX1.splice(i, 1);
-
           }
         }
       } else if (x === "2") {
@@ -420,19 +495,18 @@ export const useabc = defineStore("abc", {
     },
     verzeichnisBilderX(x) {
       console.log("Test listenBild");
-          Storage.list('')
-                  .then(result => this.verzeichnisBilder = result,  
-                  )
-                  .catch(err => console.log(err));
+      Storage.list("")
+        .then((result) => (this.verzeichnisBilder = result))
+        .catch((err) => console.log(err));
     },
     deleteBild(x) {
       const testY = new Promise(async (resolve, reject) => {
         try {
-      await Storage.remove(x);
-    } catch (err) {
-      console.log("Fehler");
-    }
-  });
+          await Storage.remove(x);
+        } catch (err) {
+          console.log("Fehler");
+        }
+      });
     },
     centerChanged(update1) {
       this.center = update1;
@@ -446,7 +520,6 @@ export const useabc = defineStore("abc", {
     zoomMinus() {
       this.zoom = this.zoom - 1;
     },
-
   },
   getters: {
     Wbreite: (state) => (prozent) => {
@@ -456,7 +529,6 @@ export const useabc = defineStore("abc", {
       return (state.height * prozent) / 100;
     },
     vergleichThema: (state) => (x, y) => {
-    
       if (x.reihenfolge === state.tabAs[0].onlineSeite) {
         return "red";
       } else {

@@ -6,6 +6,46 @@ import { LazyLoading, LazyLoadingDisabled } from "@aws-amplify/datastore";
 
 
 
+type EagerTabB230215 = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<TabB230215, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly veranstaltung?: string | null;
+  readonly mandant?: string | null;
+  readonly startArt?: string | null;
+  readonly datumAnfang?: string | null;
+  readonly datumEnde?: string | null;
+  readonly ort?: string | null;
+  readonly fotoName?: string | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+type LazyTabB230215 = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<TabB230215, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly veranstaltung?: string | null;
+  readonly mandant?: string | null;
+  readonly startArt?: string | null;
+  readonly datumAnfang?: string | null;
+  readonly datumEnde?: string | null;
+  readonly ort?: string | null;
+  readonly fotoName?: string | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+export declare type TabB230215 = LazyLoading extends LazyLoadingDisabled ? EagerTabB230215 : LazyTabB230215
+
+export declare const TabB230215: (new (init: ModelInit<TabB230215>) => TabB230215) & {
+  copyOf(source: TabB230215, mutator: (draft: MutableModel<TabB230215>) => MutableModel<TabB230215> | void): TabB230215;
+}
+
 type EagerTabA230215 = {
   readonly [__modelMeta__]: {
     identifier: ManagedIdentifier<TabA230215, 'id'>;
