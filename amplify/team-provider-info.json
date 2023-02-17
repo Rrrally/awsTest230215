@@ -18,6 +18,15 @@
       "storage": {
         "s3awstest230215storage375a637f": {},
         "s3awstest230215storage688ea7a7": {}
+      },
+      "function": {
+        "awstest2302151e14402a": {
+          "deploymentBucketName": "amplify-awstest230215-staging-141118-deployment",
+          "s3Key": "amplify-builds/awstest2302151e14402a-6d376165536c394f474a-build.zip"
+        }
+      },
+      "api": {
+        "awsTest230215": {}
       }
     }
   }
