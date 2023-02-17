@@ -43,9 +43,6 @@
             color="red"
             >Ändern</v-btn
           >
-
-
-
         </v-col>
       </v-col>
     </v-row>

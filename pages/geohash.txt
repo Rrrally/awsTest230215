@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>OpenLayers Map with Geohashes</title>
+  <link rel="stylesheet" href="https://openlayers.org/en/v4.6.5/css/ol.css" type="text/css">
+  <script src="https://openlayers.org/en/v4.6.5/build/ol.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/geohash/dist/geohash.min.js"></script>
+  <style>
+    #map {
+      height: 500px;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <script>
+    var map = new ol.Map({
+      target: 'map',
+      layers: [
+        new ol.layer.Tile({
+          source: new ol.source.OSM()
+        })
+      ],
+      view: new ol.View({
+        center: ol.proj.fromLonLat([10.0, 50.0]),
+        zoom: 4
+      })
+    });
+
+    // Define your geohashes
+    var geohashes = ["u33dbn", "u33d6z", "u33d71", "u33dbk"];
+
+    // Convert geohashes to coordinates and add them to the map
+    for (var i = 0; i < geohashes.length; i++) {
+      var coords = geohash.decode(geohashes[i]);
+      var feature = new ol.Feature({
+        geometry: new ol.geom.Point(ol.proj.fromLonLat([coords.longitude, coords.latitude]))
+      });
+      var vectorSource = new ol.source.Vector({
+        features: [feature]
+      });
+      var vectorLayer = new ol.layer.Vector({
+        source: vectorSource
+      });
+      map.addLayer(vectorLayer);
+    }
+  </script>
+</body>
+</html>
+
+
+https://github.com/chrisveness/latlon-geohash

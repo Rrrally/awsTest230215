@@ -1,19 +1,14 @@
 <template>
+  <v-card
+    v-if="abc.offsetTop > abc.Whöhe(50)"
+    class="pl-12 text-center"
+    color="red"
+    :width="abc.Wbreite(100)"
+    :height="abc.offsetTop - abc.Whöhe(50) + (abc.offsetTop - abc.Whöhe(50))"
+    >Hallo
+  </v-card>
 
-
-<v-card
-          v-if="abc.offsetTop > abc.Whöhe(50)"
-          class="pl-12 text-center"
-          color="red"
-          :width="abc.Wbreite(100)"
-          :height="
-            abc.offsetTop - abc.Whöhe(50) + (abc.offsetTop - abc.Whöhe(50))
-          "
-        >Hallo
-        </v-card>
-
-
-      <v-card
+  <v-card
     color="black"
     :width="abc.Wbreite(100)"
     :height="abc.Whöhe(100)"
@@ -29,7 +24,6 @@
       :height="abc.Whöhe(100)"
       src="https://awstest230215-storage-688ea7a7141118-staging.s3.eu-central-1.amazonaws.com/public/IMG_5099.jpeg"
     ></v-img>
-
   </v-card>
 </template>
 
@@ -70,4 +64,3 @@ export default {
   position: fixed;
 }
 </style>
-

@@ -1,19 +1,18 @@
 <template>
-  <span v-if="abc.datenGeladen === true">
-    <span v-if="abc.wartung === true">
-   <NavWartung></NavWartung>
-    </span>
-    <span v-else>
-      <div class="hinten">
-      <Front1000Hinten></Front1000Hinten>
-    </div>
-    <div class="vorne">
-      <Front2000Vorne></Front2000Vorne>
-    </div>
-    </span>
- 
- 
-  </span>
+  <v-sheet
+    class="overflow-y-auto"
+    :height="abc.Whöhe(100)"
+    color="transparent"
+    v-scroll.self="abc.onScroll"
+  >
+    <v-sheet
+      height="500vh"
+      class="align-center text-center pa-15"
+      color="transparent"
+    >
+      <Front2100Spalte1></Front2100Spalte1>
+    </v-sheet>
+  </v-sheet>
 </template>
 
 <script setup>
@@ -49,16 +48,8 @@ export default {
 </script>
 
 <style scoped>
-.hinten {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1;
-}
-.vorne {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 2;
+.sichtbarkeit {
+  visibility: hidden;
+  height: 50px;
 }
 </style>

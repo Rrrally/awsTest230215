@@ -14,15 +14,17 @@
   },
   "dependencies": {
     "@aws-amplify/ui-vue": "^3.0.4",
+    "@jamescoyle/vue-icon": "^0.1.2",
     "@mdi/font": "^7.0.96",
+    "@mdi/js": "^7.1.96",
     "@pinia/nuxt": "^0.4.6",
+    "@vuepic/vue-datepicker": "^4.0.0",
     "@vueuse/components": "^9.10.0",
     "aws-amplify": "^5.0.5",
     "moment": "^2.29.4",
     "pinia": "^2.0.30",
     "sass": "^1.56.1",
     "uuid": "^9.0.0",
-    "vue3-datepicker": "^0.3.4",
     "vue3-openlayers": "^0.1.71",
     "vuetify": "^3.0.2"
   }
