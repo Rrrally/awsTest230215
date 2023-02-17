@@ -21,23 +21,60 @@
         </v-chip>
 
       </v-chip-group>
-      <v-chip-group color="green" v-model="aktTermin">
+      <!-- <v-chip-group color="green" v-model="aktTermin"> -->
         <span v-for="(item, i) in abc.tabBs" :key="i">
-          <v-chip @dblclick="abc.datensatzBLöschen(item.id)">{{
+          <span v-if="item.mandant === abc.focus.textKurz">
+            <v-chip @dblclick="abc.datensatzBLöschen(item.id)">{{
             item.veranstaltung
           }}</v-chip>
+       
+          </span>
+        
         </span>
-      </v-chip-group>
+      <!-- </v-chip-group> -->
   
     </v-toolbar>
-    <div class="d-flex flex-row" v-if="terminNr === 0">
+    <v-form ref="form">
+    <div class="d-flex flex-row" v-if="terminNr === 0 && terminOn === true">
       <Front2121FormTermin></Front2121FormTermin>
 
     </div>
-    <div class="d-flex flex-row" v-if="terminNr === 1">
+    <div class="d-flex flex-row" v-if="terminNr === 1 && textOn === true">
     <Front2122FormText></Front2122FormText>
 
     </div>
+  <v-row v-if="textOn === true || terminOn === true">
+    <v-col cols="6">
+        <v-checkbox
+          v-model="checkbox"
+        
+          label="Do you agree?"
+          required
+        ></v-checkbox>
+      </v-col>
+      <v-col cols="6">
+    <v-col cols="4">
+          <v-btn
+            v-if="checkbox === false"
+            color="error"
+            class="mr-4"
+            @click="reset"
+            >Abbrechen
+          </v-btn>
+
+          <v-btn
+            v-else
+            @click="abc.datensatzBErstellen(abc.form3), reset()"
+            variant="flat"
+            color="red"
+            >Ändern</v-btn
+          >
+        </v-col>
+</v-col>
+</v-row>
+
+
+    </v-form>
   </v-card>
 </template>
 
@@ -50,32 +87,51 @@ import { mdiArrowUpBold } from '@mdi/js';
 
 const abc = useabc();
 const daten = useDaten();
-
+// const checkbox = false;
 
 // onMounted(() => {
 //   abc.befehlR();
 // });
 // watch(
-//   () => abc.variable,
+//   () => checkbox,
 //   (x, y) => {
-
+//     console.log("Mandant");
+//     // abc.form3.mandant = 
 //   }
 // );
 </script>
 
 <script>
 export default {
-  props: {},
+  props: {
+
+  },
   components: {
     SvgIcon
   },
   data() {
     return {
-      terminNr: 0,
+      terminNr: null,
       path1: mdiArrowDownBold,
       path2: mdiArrowUpBold,
       terminOn: false,
       textOn: false,
+
+      // valid: true,
+      // nameRules: [
+      //   (v) => !!v || "Name is required",
+      //   (v) => (v && v.length <= 30) || "Name must be less than 30 characters",
+      // ],
+      // email: "",
+      // emailRules: [
+      //   (v) => !!v || "E-mail is required",
+      //   (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
+      // ],
+      // select: null,
+
+      checkbox: false,
+
+
     };
   },
   mounted() {},
@@ -83,25 +139,38 @@ export default {
   computed: {},
   methods: {
     switchOn(x) {
+      // debugger;
       if (x === 1) {
-        if (this.terminOn === false) {
-        this.terminOn = true;
-        this.textOn = false;
-      } else {
+        if (this.terminOn === true) {
         this.terminOn = false;
+        // this.textOn = true;
+      } else {
+        this.terminOn = true;
       }
       } else if (x === 2) {
-        if (this.textOn === false) {
-        this.textOn = true;
-        this.terminOn = false;
-      } else {
+        if (this.textOn === true) {
         this.textOn = false;
+        // this.terminOn = true;
+      } else {
+        this.textOn = true;
       }
       }
 
-    }
+    },
+    // async validate() {
+    //   const { valid } = await this.$refs.form.validate();
+    // },
+    reset() {
+      this.$refs.form.reset();
+      this.checkbox = false;
+    },
+    resetValidation() {
+      this.$refs.form.resetValidation();
+    },
   },
-  watch: {},
+  watch: {
+  
+  },
 };
 </script>
 

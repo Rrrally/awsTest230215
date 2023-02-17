@@ -33,6 +33,7 @@ export const useabc = defineStore("abc", {
     radioX0: 0,
     radioX1: 0,
     radioX3: null,
+    radioX4: 0,
     userId: "",
     tabBereich: 0,
     form2: {
@@ -77,6 +78,21 @@ export const useabc = defineStore("abc", {
     foto: {},
     verzeichnisBilder: [],
     datumJetzt: moment().locale("de").format("LLLL"),
+    focus: {},
+    datumArt: ["Einzel", "Feiertag", "monatlich", "wöchentlich", "täglich"]
+    // valid: true,
+    // nameRules: [
+    //   (v) => !!v || "Name is required",
+    //   (v) => (v && v.length <= 30) || "Name must be less than 30 characters",
+    // ],
+    // email: "",
+    // emailRules: [
+    //   (v) => !!v || "E-mail is required",
+    //   (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
+    // ],
+    // select: null,
+
+    // checkbox: false,
   }),
   actions: {
     flächeErrechnen() {
@@ -199,6 +215,7 @@ export const useabc = defineStore("abc", {
       });
     },
     datensatzBErstellen(x) {
+      // debugger;
       new Promise(async () => {
         try {
           console.log("Create");
@@ -207,9 +224,9 @@ export const useabc = defineStore("abc", {
             new TabB230215({
          
               veranstaltung: x.veranstaltung,
-              mandant: x.mandant,
-              startArt: x.startArt,
-              datumAnfang: x.datumAnfang,
+              mandant: this.focus.textKurz,
+              startArt: this.datumArt[this.radioX4],
+              datumAnfang: moment(x.datumAnfang).locale("de").format("DD.MM.YYYY"),
               datumEnde: x.datumEnde,
               ort: x.ort,
               fotoName: x.fotoName
@@ -465,7 +482,13 @@ export const useabc = defineStore("abc", {
       }
     },
     farbwechsel2(x) {
-      if (x === this.ping) {
+      // console.log("Farbwechsel");
+      // console.log(x.id);
+      // console.log(this.ping);
+      if (x.id === this.ping) {
+        // console.log("Ja");
+        this.focus = x;
+      
         return "bg-white text-yellow";
       } else {
         return "bg-white text-black";
@@ -477,6 +500,7 @@ export const useabc = defineStore("abc", {
         const a = entries[0].target.innerHTML.trim();
 
         this.ping = a;
+       
       }
     },
     onScroll(e) {

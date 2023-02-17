@@ -4,7 +4,8 @@
         <v-app-bar-nav-icon
           @click="abc.umschalten('DrawerLeft')"
         ></v-app-bar-nav-icon>
-        <v-app-bar-title>{{ abc.kundendaten.organisation }} 
+        <v-app-bar-title>{{ abc.kundendaten.organisation }} - {{ abc.focus.textKurz }} -
+          - {{ abc.terminNr }} - {{ abc.terminOn }}
 
         </v-app-bar-title>
       </template>

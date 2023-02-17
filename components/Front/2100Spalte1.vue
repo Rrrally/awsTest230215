@@ -13,16 +13,24 @@
       {{ item.id }}
     </div>
 
-    <Front2120FormLeiste></Front2120FormLeiste>
+
     <v-card
       class="mx-auto"
       v-intersect="abc.onIntersect"
       color="orange"
       :width="abc.Wbreite(80)"
-      :height="abc.Whöhe(100)"
+     
     >
       <v-card-title>{{ item.textKurz }}</v-card-title>
-      <span v-if="item.textKurz === 'Über uns'"> Versuch </span>
+      <Front2120FormLeiste></Front2120FormLeiste>
+
+<span v-for="item in abc.tabBs" :key="item.id">
+  <span v-if="item.mandant === abc.focus.textKurz"> 
+   
+        <FrontKarteTermin :uebertrag="item"></FrontKarteTermin>
+         </span>
+</span>
+   
     </v-card>
     <div
       :id="`${item.id}`"

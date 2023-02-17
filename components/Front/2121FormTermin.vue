@@ -3,38 +3,38 @@
     <v-tab value="option-1"> Was </v-tab>
     <v-tab value="option-2"> Wann </v-tab>
     <v-tab value="option-3"> Wo </v-tab>
-    <v-btn variant="flat" color="error"> Speichern </v-btn>
+   
   </v-tabs>
   <v-window v-model="tab">
     <v-window-item value="option-1">
-      Was passiert ?
       <v-card :width="abc.Wbreite(70)">
+       
         <Front2121Was></Front2121Was>
       </v-card>
     </v-window-item>
     <v-window-item value="option-2">
       <v-card :width="abc.Wbreite(70)" height="400">
-        <v-radio-group inline v-model="radioX4">
-          <v-radio label="Einzel" value="1"></v-radio>
-          <v-radio label="Feiertag" value="2"></v-radio>
-          <v-radio label="monatlich" value="3"></v-radio>
-          <v-radio label="wöchentlich" value="4"></v-radio>
-          <v-radio label="täglich" value="5"></v-radio>
+        <v-radio-group inline v-model="abc.radioX4">
+          <v-radio :label="abc.datumArt[0]" value="0"></v-radio>
+          <v-radio :label="abc.datumArt[1]" value="1"></v-radio>
+          <v-radio :label="abc.datumArt[2]" value="2"></v-radio>
+          <v-radio :label="abc.datumArt[3]" value="3"></v-radio>
+          <v-radio :label="abc.datumArt[4]" value="4"></v-radio>
         </v-radio-group>
 
-        <div v-if="radioX4 === '1'">
+        <div v-if="abc.radioX4 === '0'">
           <VueDatePicker
-            v-model="date"
+            v-model="abc.form3.datumAnfang"
             inline
             text-input
             inline-with-input
             auto-apply
           />
         </div>
-        <div v-if="radioX4 === '2'"></div>
-        <div v-if="radioX4 === '3'"></div>
-        <div v-if="radioX4 === '4'"></div>
-        <div v-if="radioX4 === '5'"></div>
+        <div v-if="abc.radioX4 === '1'"></div>
+        <div v-if="abc.radioX4 === '2'"></div>
+        <div v-if="abc.radioX4 === '3'"></div>
+        <div v-if="abc.radioX4 === '4'"></div>
       </v-card>
     </v-window-item>
     <v-window-item value="option-3">
@@ -68,7 +68,7 @@ import { ref } from "vue";
 
 const abc = useabc();
 const daten = useDaten();
-const date = ref();
+// const date = ref();
 
 // onMounted(() => {
 //   abc.befehlR();
@@ -86,7 +86,7 @@ export default {
   props: {},
   data() {
     return {
-      radioX4: 0,
+      // radioX4: 0,
       tab: "option-1",
     };
   },

@@ -27,7 +27,7 @@
             <v-item v-slot="{ select }" v-if="item2.zuFormID === ''">
               <v-list-item @click="select" :value="item2.textKurz">
                 <nuxt-link
-                  :class="abc.farbwechsel2(item2.id)"
+                  :class="abc.farbwechsel2(item2)"
                   :to="{ path: '/', hash: `#${item2.id}` }"
                   :external="true"
                   >{{ item2.textKurz }}</nuxt-link
@@ -39,7 +39,7 @@
               <v-item v-slot="{ select }" v-if="item3.zuFormID === item2.id">
                 <v-list-item @click="select" :value="item3.textKurz">
                   <nuxt-link
-                    :class="abc.farbwechsel2(item3.id)"
+                    :class="abc.farbwechsel2(item3)"
                     :to="{ path: '/', hash: `#${item3.id}` }"
                     :external="true"
                     >__{{ item3.textKurz }}</nuxt-link
@@ -58,7 +58,7 @@
                 @click="select"
                 :title="item4.title"
                 :value="item4.title"
-                :class="abc.farbwechsel2(item4.id)"
+                :class="abc.farbwechsel2(item4)"
                 :to="item4.to"
               >
                 <nuxt-link
@@ -79,7 +79,7 @@
                 @click="select"
                 :title="item4.title"
                 :value="item4.title"
-                :class="abc.farbwechsel2(item4.id)"
+                :class="abc.farbwechsel2(item4)"
                 :to="item4.to"
               >
                 <nuxt-link

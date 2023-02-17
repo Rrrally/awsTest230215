@@ -3,7 +3,7 @@
    <v-tab value="option-1"> Leer1 </v-tab>
    <v-tab value="option-2"> Leer2 </v-tab>
    <v-tab value="option-3"> Leer3 </v-tab>
-   <!-- <v-btn variant="flat" color="error"> Speichern </v-btn> -->
+ 
  </v-tabs>
  <v-window v-model="tab">
    <v-window-item value="option-1">
@@ -34,9 +34,7 @@
    </v-window-item>
    <v-window-item value="option-2">
     Leer 2
-     <!-- <v-card :width="abc.Wbreite(70)">
-       <Front2121Was></Front2121Was>
-     </v-card> -->
+ 
    </v-window-item>
    <v-window-item value="option-3">
      <v-card :width="abc.Wbreite(70)">
