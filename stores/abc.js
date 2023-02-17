@@ -79,7 +79,8 @@ export const useabc = defineStore("abc", {
     verzeichnisBilder: [],
     datumJetzt: moment().locale("de").format("LLLL"),
     focus: {},
-    datumArt: ["Einzel", "Feiertag", "monatlich", "wöchentlich", "täglich"]
+    datumArt: ["Einzel", "Feiertag", "monatlich", "wöchentlich", "täglich"],
+    master: false
     // valid: true,
     // nameRules: [
     //   (v) => !!v || "Name is required",
@@ -481,17 +482,22 @@ export const useabc = defineStore("abc", {
         this.wartung = !this.wartung;
       }
     },
-    farbwechsel2(x) {
-      // console.log("Farbwechsel");
-      // console.log(x.id);
-      // console.log(this.ping);
+    farbwechsel2B(x) {
       if (x.id === this.ping) {
-        // console.log("Ja");
         this.focus = x;
-      
-        return "bg-white text-yellow";
+        return this.farbeOben;
       } else {
-        return "bg-white text-black";
+        return this.farbeOben;
+      }
+
+     
+    },
+    farbwechsel2T(x) {
+      if (x.id === this.ping) {
+     
+        return "text-green";
+      } else {
+        return this.farbeObenT[1];
       }
     },
     onIntersect(isIntersecting, entries, observer) {

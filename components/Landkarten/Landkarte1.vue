@@ -1,11 +1,11 @@
 <template>
   <v-row>
-  <v-card class="pa-3" color="orange" :width="abc.Wbreite(82)" :height="abc.Whöhe(80)">
+  <v-card class="pa-3" color="orange" :width="abc.Wbreite(60)" :height="abc.Whöhe(62)">
     <client-only>
   
       <ol-map     :style="{
       height: abc.Whöhe(60) + 'px',
-      width: abc.Wbreite(80)  + 'px',
+      width: abc.Wbreite(60)  + 'px',
      
     }">
       <ol-view
@@ -27,7 +27,7 @@
     </ol-map>
   </client-only>
   </v-card>
-  <v-card class="pt-5" color="green" :width="abc.Wbreite(12)" :height="abc.Whöhe(80)">
+  <v-card class="pt-12 pl-0" color="green" :width="abc.Wbreite(12)" :height="abc.Whöhe(80)">
     <v-btn @click="abc.zoomPlus()" variant="flat" color="secondary">+</v-btn>
   <v-btn @click="abc.zoomMinus()" variant="flat" color="secondary">-</v-btn>
   <v-card-text>{{ abc.zoom }}</v-card-text>

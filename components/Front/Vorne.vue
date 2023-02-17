@@ -10,7 +10,7 @@
       class="align-center text-center pa-15"
       color="transparent"
     >
-      <Front2100Spalte1></Front2100Spalte1>
+      <FrontSpalte1></FrontSpalte1>
     </v-sheet>
   </v-sheet>
 </template>

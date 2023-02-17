@@ -5,10 +5,10 @@
     </span>
     <span v-else>
       <div class="hinten">
-      <Front1000Hinten></Front1000Hinten>
+      <FrontHinten></FrontHinten>
     </div>
     <div class="vorne">
-      <Front2000Vorne></Front2000Vorne>
+      <FrontVorne></FrontVorne>
     </div>
     </span>
  

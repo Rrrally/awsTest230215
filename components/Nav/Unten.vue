@@ -5,7 +5,7 @@
     >
       <v-row>
         <v-col cols="4" class="pa-0 ma-0">
-          <!-- <v-checkbox v-model="abc.wartung" label="Checkbox"></v-checkbox> -->
+          <v-checkbox v-model="abc.master" label="Checkbox"></v-checkbox>
            </v-col>
         <v-col cols="4" class="pa-1 ma-0">
           {{ new Date().getFullYear() }} — <strong>{{ abc.kundendaten.organisation }}</strong>

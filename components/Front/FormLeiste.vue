@@ -36,11 +36,11 @@
     </v-toolbar>
     <v-form ref="form">
     <div class="d-flex flex-row" v-if="terminNr === 0 && terminOn === true">
-      <Front2121FormTermin></Front2121FormTermin>
+      <FrontFormTermin></FrontFormTermin>
 
     </div>
     <div class="d-flex flex-row" v-if="terminNr === 1 && textOn === true">
-    <Front2122FormText></Front2122FormText>
+    <FrontFormText></FrontFormText>
 
     </div>
   <v-row v-if="textOn === true || terminOn === true">
