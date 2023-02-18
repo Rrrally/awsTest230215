@@ -1,35 +1,30 @@
 <template>
-    <span v-for="item in abc.verzeichnisBilder.results" :key="item.id">
+  <span v-for="item in abc.verzeichnisBilder.results" :key="item.id">
  
-        <v-card v-if="item.key != null"
-          class="imagePreviewWrapper"
-          :style="{ 'background-image': `url(https://awstest230215-storage-688ea7a7141118-staging.s3.eu-central-1.amazonaws.com/public/${item.key}` }"
-        >
-
-        </v-card>
-      <v-chip
-    
-      class="ma-2"
-      closable
-      @click="abc.deleteBild(item.key)"
+    <v-card
+      v-if="item.key != null"
+      class="imagePreviewWrapper"
+      :style="{
+        'background-image': `url(https://awstest230215-storage-688ea7a7141118-staging.s3.eu-central-1.amazonaws.com/public/${item.key}`,
+      }"
     >
-    {{ item.key }}
+
+    <v-chip class="ma-0" color="white" closable @click="abc.deleteBild(item.key)">
+      {{ item.key }}
     </v-chip>
 
-    </span>
-    <!-- {{ abc.verzeichnisBilder.results[0].key }} -->
-   
-    <!-- results = key, eTag, lastModified, size  -->
 
-  
+    </v-card>
+  </span>
+  <!-- {{ abc.verzeichnisBilder.results[0].key }} -->
+
+  <!-- results = key, eTag, lastModified, size  -->
 </template>
 
 <script setup>
 import { useabc } from "@/stores/abc";
 import { useDaten } from "@/stores/daten";
-import { Storage } from "@aws-amplify/storage"
-
-
+import { Storage } from "@aws-amplify/storage";
 
 const abc = useabc();
 const daten = useDaten();
@@ -47,6 +42,15 @@ watch(
   () => abc.tabBereich,
   (x, y) => {
     abc.verzeichnisBilderX();
+  }
+);
+watch(
+  () => abc.verzeichnisBilder,
+  (x, y) => {
+    if (x.length != y.length) {
+      abc.verzeichnisBilderX();
+    }
+   
   }
 );
 </script>

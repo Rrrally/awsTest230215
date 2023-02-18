@@ -1,90 +1,68 @@
 <template>
   <div class="text-center">
-
-
     <v-snackbar
-   color="transparent"
+      color="transparent"
       v-model="abc.snackbar"
       vertical
       :width="abc.Wbreite(100)"
       :height="abc.Whöhe(100)"
       timeout="-1"
     >
-  
-    <!-- <v-container
-    id="scroll-target"
-    :style="{
-      height: abc.Whöhe(60) + 'px',
-      width: abc.Wbreite(100) - 50 + 'px',
-      maxWidth: maxWeite + 'px',
-    }"
-    class="overflow-y-auto bg-red pa-0 ma-0"
-  > -->
-  <v-container
-    id="scroll-target"
-    :style="{
-      height: abc.Whöhe(60) + 'px',
-      width: abc.Wbreite(100) - 50 + 'px',
-     
-    }"
-    class="overflow-y-auto bg-red pa-0 ma-0"
-  >
-      <NavLogin v-if="abc.tabBereich === 0"></NavLogin>
-      <NavFarben v-if="abc.tabBereich === 1"></NavFarben>
-      <NavLeiste v-if="abc.tabBereich === 2"></NavLeiste>
-      <NavBilder v-if="abc.tabBereich === 3"></NavBilder>
-      <LandkartenLandkarte1 v-if="abc.tabBereich === 4"></LandkartenLandkarte1>
+      <v-container
+        id="scroll-target"
+        :style="{
+          height: abc.Whöhe(60) + 'px',
+          width: abc.Wbreite(100) - 50 + 'px',
+        }"
+        class="overflow-y-auto bg-red pa-0 ma-0"
+      >
+        <NavLogin v-if="abc.tabBereich === 0"></NavLogin>
+        <NavFarben v-if="abc.tabBereich === 1"></NavFarben>
+        <NavLeiste v-if="abc.tabBereich === 2"></NavLeiste>
+        <NavBilder v-if="abc.tabBereich === 3"></NavBilder>
+        <LandkartenLandkarte1
+          v-if="abc.tabBereich === 4"
+        ></LandkartenLandkarte1>
 
-      <v-row
-      v-scroll:#scroll-target="onScroll"
-      align="center"
-      justify="center"
-      style="height: 500px"
-    >
-    </v-row>
-  </v-container>
-
-
-
+        <v-row
+          v-scroll:#scroll-target="onScroll"
+          align="center"
+          justify="center"
+          style="height: 500px"
+        >
+        </v-row>
+      </v-container>
 
       <template v-slot:actions>
+        <v-card color="black">
+          <div class="pa-0">
+            <v-chip-group
+              selected-class="text-yellow"
+              column
+              v-model="abc.tabBereich"
+            >
+              <v-chip>
+                {{ tags[0] }}
+              </v-chip>
+              <v-chip v-if="abc.userId != ''">
+                {{ tags[1] }}
+              </v-chip>
+              <v-chip v-if="abc.userId != ''">
+                {{ tags[2] }}
+              </v-chip>
+              <v-chip v-if="abc.userId != ''">
+                {{ tags[3] }}
+              </v-chip>
+              <v-chip v-if="abc.userId != ''">
+                {{ tags[4] }}
+              </v-chip>
+            </v-chip-group>
+          </div>
 
-        <v-card color="black" >
-  <div class="pa-0">
-          <v-chip-group
-            selected-class="text-yellow"
-            column
-            v-model="abc.tabBereich"
-          >
-         
-            <v-chip>
-              {{ tags[0] }}
-            </v-chip>
-            <v-chip v-if="abc.userId != ''">
-              {{ tags[1] }}
-            </v-chip>
-            <v-chip  v-if="abc.userId != ''">
-              {{ tags[2] }}
-            </v-chip>
-            <v-chip  v-if="abc.userId != ''">
-              {{ tags[3] }}
-            </v-chip>
-            <v-chip  v-if="abc.userId != ''">
-              {{ tags[4] }}
-            </v-chip>
-          </v-chip-group>
-        </div>
-
-
-        <v-btn
-          color="white"
-          variant="text"
-          @click="abc.snackbar = false"
-        >
-          Close
-        </v-btn>
-</v-card>
-    
+          <v-btn color="white" variant="text" @click="abc.snackbar = false">
+            Close
+          </v-btn>
+        </v-card>
       </template>
     </v-snackbar>
   </div>
@@ -114,17 +92,9 @@ export default {
   data() {
     return {
       // snackbar: false,
-      tags: [
-        'Login',
-        'Layout',
-        'Nav-Leiste',
-        'Bilder',
-        'Landkarte'
-
-      ],
+      tags: ["Login", "Layout", "Nav-Leiste", "Bilder", "Landkarte"],
       offsetTop: 0,
-      maxWeite: 635
-
+      maxWeite: 635,
     };
   },
   mounted() {},

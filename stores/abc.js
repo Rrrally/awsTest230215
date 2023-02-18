@@ -75,7 +75,7 @@ export const useabc = defineStore("abc", {
     center: [1014774.9306317891, 6891750.848911292],
     zoom: 12,
     previewImage: null,
-    foto: {},
+    foto: [],
     verzeichnisBilder: [],
     datumJetzt: moment().locale("de").format("LLLL"),
     focus: {},
@@ -512,16 +512,22 @@ export const useabc = defineStore("abc", {
     onScroll(e) {
       this.offsetTop = e.target.scrollTop;
     },
+    speichernBilder(x) {
+    
+      for (let i = 0; i < x.length; i++) {
+        this.speichernBild(x[i]);
+      }
+    },
     speichernBild(x) {
-      console.log("Test Speichern");
-      const testY = new Promise(async (resolve, reject) => {
+  
+       new Promise(async () => {
         try {
-          const testX = await Storage.put(x[0].name, x[0]);
+            let testX = await Storage.put(x.name, x)
           this.verzeichnisBilderX();
         } catch (err) {
           console.log("Fehler speichernBild");
         }
-      });
+      });  
     },
     verzeichnisBilderX(x) {
       console.log("Test listenBild");
@@ -533,6 +539,7 @@ export const useabc = defineStore("abc", {
       const testY = new Promise(async (resolve, reject) => {
         try {
           await Storage.remove(x);
+          
         } catch (err) {
           console.log("Fehler");
         }

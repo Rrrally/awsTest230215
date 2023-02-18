@@ -1,28 +1,32 @@
 <template>
 
-        <h1>Foto hochladen</h1>
+        <h1>Foto hochladen {{ foto.length }}</h1>
         <v-file-input
           ref="fileInput"
+          multiple
           v-model="foto"
           @input="pickFile"
           show-size
           label="File input"
         ></v-file-input>
+        <v-btn
+          v-if="previewImage != null"
+          @click="abc.speichernBilder(foto)"
+          variant="flat"
+          color="error"
+        >
+          Hochladen
+        </v-btn>
+      
         <v-card
+
           v-if="previewImage != null"
           class="imagePreviewWrapper"
           :style="{ 'background-image': `url(${previewImage})` }"
           @click="selectImage"
         >
         </v-card>
-        <v-btn
-          v-if="previewImage != null"
-          @click="abc.speichernBild(foto)"
-          variant="flat"
-          color="error"
-        >
-          Hochladen
-        </v-btn>
+ 
     
     
 </template>
@@ -51,7 +55,7 @@ export default {
   data() {
     return {
             previewImage: null,
-    foto: {},
+    foto: [],
     };
   },
   mounted() {},
@@ -64,9 +68,7 @@ export default {
     pickFile() {
       let input = this.$refs.fileInput;
       let file = input.files;
-      // console.log("PickFile")
-      // console.log(input);
-      // console.log(file);
+
       if (file && file[0]) {
         let reader = new FileReader();
         reader.onload = (e) => {
